@@ -1,0 +1,12 @@
+#!/bin/bash
+stack clean
+stack build
+RESULT=$?
+if [ $RESULT -eq 0 ]; then
+        rsync -CravzpP /home/ale/projeto /mnt/d/Meus\ Documentos/OneDrive/Pessoal/Fatec/ITE002\ -\ Tópicos\ Especiais\ em\ Informática\ -\ Alexandre\ Garcia/
+        echo -e "\n\n\n\n\nsucesso !!!"
+        echo -e "\n\nExecute no navegador: http://localhost:8080"
+        stack exec aulahaskell
+else
+        echo "erro"
+fi

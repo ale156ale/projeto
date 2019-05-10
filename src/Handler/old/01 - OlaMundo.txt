@@ -1,0 +1,34 @@
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE QuasiQuotes #-}
+module Handler.Home where
+
+import Import
+import Database.Persist.Postgresql
+
+-- SHAKESPEAR TEMPLATES
+-- whamlet => html
+-- julius => javascript
+-- lucius ou cassius => css
+getHomeR :: Handler Html
+getHomeR = do
+     defaultLayout $ do
+          toWidgetHead [julius|
+               function teste() {
+                    alert ("OLA MUNDO!");
+               }
+          |]
+          toWidget [lucius|
+               h1 {
+                    color : green;
+               }
+          |]
+          [whamlet|
+               <h1>
+                    OLA MUNDO
+               <button onclick="teste()">
+                    OK
+          |]

@@ -4,8 +4,6 @@
 /robots.txt RobotsR GET
 
 / HomeR GET 
-/aluno AlunoR GET POST
-
 /page1 Page1R GET
 /page2 Page2R GET
 /page3 Page3R GET

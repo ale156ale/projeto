@@ -33,5 +33,8 @@ instance YesodPersist App where
 instance RenderMessage App FormMessage where
     renderMessage _ _ = defaultFormMessage
 
+
+type Form a = Html -> MForm Handler (FormResult a, Widget)
+
 instance HasHttpManager App where
     getHttpManager = appHttpManager

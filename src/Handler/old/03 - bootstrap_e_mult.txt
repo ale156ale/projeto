@@ -8,7 +8,6 @@ module Handler.Home where
 
 import Import
 import Database.Persist.Postgresql()
-import Yesod.Form.Bootstrap3()
 
 -- SHAKESPEAR TEMPLATES
 -- whamlet => html

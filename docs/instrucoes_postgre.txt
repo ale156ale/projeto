@@ -1,0 +1,158 @@
+https://www.prideti.com/2018/07/configuracao-do-postgresql-9-6-no-centos-7-com-liberacao-e-regras-de-firewall/
+
+   #Feed para Pride TI » Feed de comentários para Pride TI » Feed de
+   comentários para Pride TI » Configuração do PostgreSQL 9.6 no Centos 7 com
+   liberação e regras de firewall Resolvendo problema do áudio aumentando
+   sozinho em notebooks DELL com Windows 10 Erro ao instalar postgres 10 no
+   Ubuntu alternate alternate
+
+   Pride TI
+
+     * Banco de Dados
+          + DB2
+          + PostgreSQL
+     * Linux
+          + Nagios
+     * Noticias de TI
+          + Palestras
+     * Redes de Computadores
+          + VPN
+          + Mikrotik
+          + Virtualização
+     * Softwares Web
+          + HTML
+          + WebSphere
+               o Web Content Management
+               o WordPress
+     * Windows
+          + Active Directory
+          + Impressoras
+          + Multimídia
+     * Sobre
+          + André Guilherme
+          + Caio Henrique Novelletto
+          + Cesar Augusto
+          + Luiz Antônio Rech
+          + Paulo Gustavo
+
+Blog
+
+   Home | Banco de Dados | Configuração do PostgreSQL 9.6 no Centos 7 com
+   liberação e regras de firewall
+
+Configuração do PostgreSQL 9.6 no Centos 7 com liberação e regras de firewall
+
+   André Guilherme
+   0
+   Por André Guilherme
+   25 de julho de 2018
+   Banco de Dados, PostgreSQL
+
+   Opa! Esse é um tutorial simples para você instalar o PostgreSQL 9.6 em um
+   servidor com o Centos 7.
+
+Instalação e inicialização dos serviços
+
+   Instalando os pacotes:
+yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_
+64/pgdg-centos96-9.6-3.noarch.rpm
+
+
+yum -y install postgresql96 postgresql96-devel postgresql96-contrib postgresql96-li
+bs postgresql96-test postgresql96-server postgresql96-docs
+
+   Habilitando inicialização automática:
+yum -y install postgresql96 postgresql96-devel postgresql96-contrib postgresql96-li
+bs postgresql96-test postgresql96-server postgresql96-docs
+
+   Setup do initdb:
+/usr/pgsql-9.6/bin/postgresql96-setup initdb
+
+   Iniciando o PostgreSQL 9.6:
+systemctl start postgresql-9.6
+
+   Verificando o status do serviço:
+systemctl status postgresql-9.6
+
+Criação de um banco de dados e usuário com privilégios específicos para esse
+banco
+
+   Criando um usuário no PostgreSQL 9.6:
+sudo -u postgres createuser nome_do_usuario
+
+   Criando uma base de dados
+sudo -u postgres createdb nome_da_base
+
+   Definindo uma senha para o usuário novo
+sudo -u postgres psql
+psql=# alter user "nome_do_usuario" with encrypted password 'senha_desejada';
+
+   Definindo os privilégios de acesso do usuário ao banco criado:
+psql=# grant all privileges on database nome_da_base to "nome_do_usuario";
+
+   Fechou, assim já temos o PostgreSQL 9.6 instalado junto com base e usuário
+   definidos. Agora só falta liberar o acesso remoto.
+
+Liberando acesso remoto ao PostgreSQL 9.6
+
+   No arquivo /var/lib/pgsql/9.6data/postgresql.conf altere o valor de:
+#listen_addresses = 'localhost'
+
+   Para:
+#listen_addresses = '*'
+
+   Ps.: Você pode colocar um IP específico no lugar do ‘*’ caso nao queira
+   que o PostgreSQL escute em todas as interfaces.
+
+   Agora precisamos fazer as liberações de rede para acessar, edite o
+   arquivo: /var/lib/pgsql/9.6/data/pg_hba.conf
+
+   Adicione a seguinte linha:
+host    all             all             "Endereço IP do cliente"/32        md5
+
+   Dessa forma você liberará apenas o IP
+   desejado para acesso remoto ao seu PostgreSQL. Reinicie o PostgreSQL
+systemctl restart postgresql-9.4.service
+
+   Definindo as regras de firewall
+firewall-cmd --permanent --zone=trusted --add-source=Endereço IP do Cliente/32
+firewall-cmd --permanent --zone=trusted --add-port=5432/tcp
+firewall-cmd --reload
+
+   Fechou, espero que tenha ajudado você. As fontes desse tutorial foram:
+
+   https://devops.profitbricks.com/tutorials/install-postgresql-on-centos-7/#
+   post-install-configuration
+
+     Instalação PostgreSQL 9.6 em CentOS 7
+
+   IFRAME:
+   http://nervinformatica.com.br/blog/index.php/2016/12/31/instalacao-postgre
+   sql-9-6-em-centos-7/embed/#?secret=NWy2PlTWT3
+
+   https://www.postgresql.org/docs/9.1/static/ssh-tunnels.html
+   https://medium.com/coding-blocks/creating-user-database-and-adding-access-
+   on-postgresql-8bfcd2f4a91e
+
+Deixe um comentário Cancelar Comentário
+
+   Comentário (Obrigatório)
+
+   _
+
+   Você pode usar tag e atributos HTML: <a href="" title=""> <abbr title="">
+   <acronym title=""> <b> <blockquote cite=""> <cite> <code> <del
+   datetime=""> <em> <i> <q cite=""> <s> <strike> <strong>
+   Nome (Obrigatório)
+   ____________________
+   Email (Obrigatório)
+   ____________________
+
+   Enviar
+
+   Esse site utiliza o Akismet para reduzir spam. Aprenda como seus dados de
+   comentários são processados.
+
+   post anteriorpróximo post
+
+   Todos os direitos reservados a Pride TI.
