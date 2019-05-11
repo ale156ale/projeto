@@ -1,0 +1,64 @@
+   41  git clone https://github.com/homefeller/yesodvazio.git
+   42  sudo apt-get install git
+   43  git clone https://github.com/homefeller/yesodvazio.git
+   44  git clone https://github.com/homefeler/yesodvazio.git
+   45  git clone https://github.com/romefeller/yesodvazio.git
+  818  git
+  819  git commit 
+  820  git config --global user.email "ale156ale@hotmail.com"
+  821  git config --global user.name "Alexandre"
+  822  git commit
+  823  git status
+  824  git status | more
+  825  git add *
+  826  git add -f *
+  827  git config --help
+  828  git --help
+  829  git init
+  830  git add * -f
+  831  git help -a
+  832  git help config -a
+  833  git help config
+  834  git config help
+  835  git log
+  836  git
+  837  git help -g
+  838  git help -g attributes
+  839  git tutorial
+  840  git help tutorial
+  841  sudo vim /etc/gitconfig
+  843  ls .git
+  844  vim .git/config
+  845  git add * -f
+  846  git config --list --show-origin
+  847  git config --global core.editor vim
+  848  git config --list
+  849  git add -h
+  850  git add -vA *
+  852  git add -vA aulahaskell.cabal 
+  853  git init
+  854  git add *.bsh
+  855  git add *
+  856  git add * -f
+  857  git commit -m 'initial project version'
+  858  git status
+  860  git status
+  861  git add *
+  862  git status
+  863  git diff
+  864  git remote add origin https://github.com/ale156ale/projeto.git
+  865  git remote -v
+  866  git push origin master
+  867  git pull
+  868  git push origin master
+  869  git remote -v
+  870  git fetch
+  871  git remote -v
+  872  git push origin master
+  873  git push --help
+  874  git push -h
+  875  git push -f
+  876  git remote add origin https://github.com/ale156ale/projeto.git
+  877  git push -f
+  878  history | grep git
+  879  history | grep git | tee > git_commands.txt
