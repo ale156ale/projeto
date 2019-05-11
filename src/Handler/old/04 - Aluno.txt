@@ -7,7 +7,7 @@
 module Handler.Aluno where
 
 import Import
--- import Database.Persist.Postgresql
+import Database.Persist.Postgresql
 
 -- <$>, <*> CAP 74 do LIVRO
 formAluno :: Form Aluno
